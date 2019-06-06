@@ -9,7 +9,7 @@
     // 初期化処理
     let drawing = false; // true:描画中, false:Not描画中
     lineInit();
-    
+
     canvas.addEventListener('mousedown', startDraw);
     canvas.addEventListener('mouseup', endDraw);
     canvas.addEventListener('mouseout', endDraw);
@@ -85,11 +85,22 @@
                 canvas.width = image.naturalWidth;
                 canvas.height = image.naturalHeight;
                 ctx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight);
+                document.querySelector('#canvas_width').value = image.naturalWidth;
+                document.querySelector('#canvas_height').value = image.naturalHeight;
                 lineInit();
             }
             image.src = event.target.result;
         }
         fr.readAsDataURL(e.target.files[0]);
         e.target.value = "";
+    });
+
+    // キャンバスサイズ変更
+    document.querySelector('#canvas_size_change').addEventListener('click', () => {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        canvas.width = document.querySelector('#canvas_width').value;
+        canvas.height = document.querySelector('#canvas_height').value;
+        ctx.putImageData(imageData, 0, 0);
+        lineInit();
     });
 })();
