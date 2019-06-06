@@ -9,19 +9,32 @@
     // 初期化処理
     let drawing = false; // true:描画中, false:Not描画中
     lineInit();
-
-    canvas.addEventListener('mousedown', startDraw);
-    canvas.addEventListener('mouseup', endDraw);
-    canvas.addEventListener('mouseout', endDraw);
-    canvas.addEventListener('mousemove', draw);
+    changeDrawLineMode();
 
     // 初期化関数
     function lineInit() {
         ctx.lineCap = 'round';
         ctx.strokeStyle = document.querySelector('#color').value;
         ctx.lineWidth = document.querySelector('.bold').value;
+        ctx.font = document.querySelector('.font_size').value + "px 'ＭＳ Ｐゴシック'";
     }
-    
+
+    // 描画モード変更
+    function changeDrawLineMode() {
+        canvas.removeEventListener('click', putString);
+        canvas.addEventListener('mousedown', startDraw);
+        canvas.addEventListener('mouseup', endDraw);
+        canvas.addEventListener('mouseout', endDraw);
+        canvas.addEventListener('mousemove', draw);
+    }
+    function changePutCharMode() {
+        canvas.removeEventListener('mousedown', startDraw);
+        canvas.removeEventListener('mouseup', endDraw);
+        canvas.removeEventListener('mouseout', endDraw);
+        canvas.removeEventListener('mousemove', draw);
+        canvas.addEventListener('click', putString);
+    }
+
     // 線描画関数
     function draw(e) {
         if (drawing) {
@@ -46,6 +59,15 @@
         drawing = false;
     }
 
+    // 文字列描画関数
+    function putString(e) {
+        const x = e.clientX - canvasPoint.left + document.scrollingElement.scrollLeft;
+        const y = e.clientY - canvasPoint.top + document.scrollingElement.scrollTop;
+        const str = document.querySelector('#string').value;
+        ctx.fillStyle = document.querySelector('#color').value;
+        ctx.fillText(str, x, y);
+    }
+
     // 色の変更
     document.querySelector('#color').addEventListener('change', e => {
         ctx.strokeStyle = e.target.value;
@@ -62,9 +84,20 @@
     // 描画形式切り替え
     document.querySelectorAll('.drawing_mode').forEach(drawingMode => drawingMode.addEventListener('change', e => {
         if (e.target.id === "pencil") {
+            changeDrawLineMode();
             ctx.globalCompositeOperation = "source-over";
+            document.querySelector('#string').disabled = true;
+            document.querySelectorAll('.font_size').forEach(fontSize => fontSize.disabled = true);
         } else if (e.target.id === "eraser") {
+            changeDrawLineMode();
             ctx.globalCompositeOperation = "destination-out";
+            document.querySelector('#string').disabled = true;
+            document.querySelectorAll('.font_size').forEach(fontSize => fontSize.disabled = true);
+        } else if (e.target.id === "char") {
+            changePutCharMode();
+            ctx.globalCompositeOperation = "source-over";
+            document.querySelector('#string').disabled = false;
+            document.querySelectorAll('.font_size').forEach(fontSize => fontSize.disabled = false);
         }
     }));
 
@@ -103,4 +136,12 @@
         ctx.putImageData(imageData, 0, 0);
         lineInit();
     });
+
+    // フォントサイズの変更
+    document.querySelectorAll('.font_size').forEach(fontSize => fontSize.addEventListener('change', e => {
+        document.querySelectorAll('.font_size').forEach(elem => {
+            elem.value = e.target.value;
+        });
+        ctx.font = e.target.value + "px 'ＭＳ Ｐゴシック'";
+    }));
 })();
