@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SNSサービス登録</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="lib/style.css">
+        <script src="lib/form.js" defer></script>
+    </head>
+    <body>
+        <p class="lead-form">SNSサービス登録</p>
+        <form action="#" method="post" id="form" >
+            <fieldset>
+                <legend>アカウント情報</legend>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">ニックネーム<em class="required">必須</em></label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs middle-input" id="aaa" type="text" name="nickName" maxlength="20" autofocus required><span class="error-message"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">メールアドレス<em class="required">必須</em></label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs middle-input" type="email" name="email" maxlength="100" required><span class="error-message"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">アイコン</label>
+                    </div>
+                    <div class="item-content">
+                        <input type="file" name="icon" accept="image/png, image/jpeg, image/gif" required><span class="error-message"></span>
+                        <label class="discription">※JPEG,PNG,GIFのいずれかの形式の画像を指定してください</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">希望パスワード<em class="required">必須</em></label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs middle-input" type="password" name="password" minlength="8" maxlength="30" required><span class="error-message"></span>
+                        <label class="discription">※8文字以上30文字以内</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">希望パスワードを再入力<em class="required">必須</em></label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs middle-input" type="password" name="passwordConfirm" minlength="8" maxlength="30" required><span class="error-message"></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>個人情報</legend>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">お名前<em class="required">必須</em></label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs middle-input" type="text" name="name" maxlength="20" required><span class="error-message"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">年齢</label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs short-input" type="number" name="age" min="0"><span class="error-message"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">お住まい <em class="required">必須</em></label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs" type="text" name="prefecture" list="kanto-region" autocomplete="on" required><span class="error-message"></span>
+                        <datalist id="kanto-region">
+                            <option value="茨城県"></option>
+                            <option value="栃木県"></option>
+                            <option value="群馬県"></option>
+                            <option value="埼玉県"></option>
+                            <option value="千葉県"></option>
+                            <option value="東京都"></option>
+                            <option value="神奈川県"></option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">性別</label>
+                    </div>
+                    <div class="item-content">
+                        <label><input type="radio" name="sex"><span class="error-message"></span>男性</label>
+                        <label><input type="radio" name="sex"><span class="error-message"></span>女性</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">生年月日</label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs middle-input" type="date" name="birthday"><span class="error-message"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">電話番号<em class="required">必須</em></label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs middle-input" type="tel" name="tel" pattern="\d{1,5}-\d{1,4}-\d{4,5}" required><span class="error-message"></span>
+                        <label class="discription">※ハイフンあり（○-○-○）</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">ブログURL</label>
+                    </div>
+                    <div class="item-content">
+                        <input class="inputs long-input" type="url" name="url" placeholder="http://"><span class="error-message"></span>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>アンケート</legend>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">好きな色</label>
+                    </div>
+                    <div class="item-content">
+                        <input type="color" name="color"><span class="error-message"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">フロントエンドの知識レベル</label>
+                    </div>
+                    <div class="item-content">
+                        詳しくない<input id="range" type="range" min="1" max="5" value="3">詳しい<span class="error-message"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="item-header">
+                        <label class="label">その他要望等</label>
+                    </div>
+                    <div class="item-content">
+                        <textarea maxlength="2000"></textarea><span class="error-message"></span>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="row item-row">
+                <input type="checkbox" name="agreement" id="agreement" value="1" required /><span class="error-message"></span><label for="agreement">規約に同意する</label>
+            </div>
+            <div class="row item-row">
+                <button type="reset">クリア</button>
+                <button type="submit" disabled>送信</button>
+            </div>
+        </form>
+    </body>
+</html>
