@@ -53,4 +53,13 @@
         });
         ctx.lineWidth = e.target.value;
     }));
+
+    // 描画形式切り替え
+    document.querySelectorAll('.drawing_mode').forEach(drawingMode => drawingMode.addEventListener('change', e => {
+        if (e.target.id === "pencil") {
+            ctx.globalCompositeOperation = "source-over";
+        } else if (e.target.id === "eraser") {
+            ctx.globalCompositeOperation = "destination-out";
+        }
+    }));
 })();
