@@ -6,16 +6,21 @@
     // コンテキスト取得
     const ctx = canvas.getContext("2d");
 
-    // 線の初期設定
-    ctx.lineCap = 'round';
-    ctx.strokeStyle = "000000";
-    ctx.lineWidth = 10;
-
+    // 初期化処理
     let drawing = false; // true:描画中, false:Not描画中
+    lineInit();
+    
     canvas.addEventListener('mousedown', startDraw);
     canvas.addEventListener('mouseup', endDraw);
     canvas.addEventListener('mouseout', endDraw);
     canvas.addEventListener('mousemove', draw);
+
+    // 初期化関数
+    function lineInit() {
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = document.querySelector('#color').value;
+        ctx.lineWidth = document.querySelector('.bold').value;
+    }
     
     // 線描画関数
     function draw(e) {
@@ -66,5 +71,25 @@
     // クリア
     document.querySelector('#clear').addEventListener('click', () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+    // 画像取り込み
+    document.querySelector('#image').addEventListener('change', e => {
+        if (e.target.value === '') {
+            return;
+        }
+        const image = new Image();
+        const fr = new FileReader();
+        fr.onload = (event) => {
+            image.onload = () => {
+                canvas.width = image.naturalWidth;
+                canvas.height = image.naturalHeight;
+                ctx.drawImage(image, 0, 0, image.naturalWidth, image.naturalHeight);
+                lineInit();
+            }
+            image.src = event.target.result;
+        }
+        fr.readAsDataURL(e.target.files[0]);
+        e.target.value = "";
     });
 })();
