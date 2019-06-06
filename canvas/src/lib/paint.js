@@ -45,4 +45,12 @@
     document.querySelector('#color').addEventListener('change', e => {
         ctx.strokeStyle = e.target.value;
     });
+
+    // 太さの変更
+    document.querySelectorAll('.bold').forEach(bold => bold.addEventListener('change', e => {
+        document.querySelectorAll('.bold').forEach(elem => {
+            elem.value = e.target.value;
+        });
+        ctx.lineWidth = e.target.value;
+    }));
 })();
