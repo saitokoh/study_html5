@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>お絵描き</title>
+        <link rel="stylesheet" href="lib/style.css">
+        <script src="lib/paint.js" defer></script>
+    </head>
+    <body>
+        <div>
+            <canvas id="paint" width="700" height="500"></canvas>
+        </div>
+        <div class="tools">
+            <div class="tool-row">
+                色：<span class="tool-item"><input id="color" type="color" /></span>
+                太さ：<span class="tool-item"><input class="bold" type="range" value="10" min="1" max="100">
+                <input class="bold" type="number" value="10" min="1" max="100"></span>
+            </div>
+            <div class="tool-row">
+                描画モード：
+                <label><input class="drawing_mode" id="pencil" type="radio" name="drawing_mode" checked>鉛筆</label>
+                <label><input class="drawing_mode" id="eraser" type="radio" name="drawing_mode">消しゴム</label>
+                <label><input class="drawing_mode" id="char" type="radio" name="drawing_mode">文字</label>
+            </div>
+            <div class="tool-row">
+                入力文字列：<span class="tool-item"><input id="string" type="text" disabled /></span>
+                フォントサイズ：<span class="tool-item"><input class="font_size" type="range" value="20" min="1" max="100" disabled>
+                <input class="font_size" type="number" value="20" min="1" max="100" disabled>px</span>
+            </div>
+            <div class="tool-row">
+                画像読み込み：<input id="image" type="file" accept="image/jpeg,image/png,image/gif">
+            </div>
+            <div class="tool-row">
+                キャンバスサイズ変更：幅<input id="canvas_width" type="number" value="700">px 高さ：<input id="canvas_height" type="number" value="500">px <button id="canvas_size_change" type="button">変更</button>
+            </div>
+            <div class="tool-row">
+                フィルタ<br>
+                <span class="tool-item"><button class="filter" id="grayscale">グレースケール</button></span>
+                <span class="tool-item"><button class="filter" id="negative" type="button">ネガポジ補正</button></span>
+                <span class="tool-item"><button class="filter" id="binarization" type="button">二値化</button></span>
+                <span class="tool-item"><button class="filter" id="gamma" type="button">ガンマ補正</button></span>
+                <span class="tool-item"><button class="filter" id="blur" type="button">ぼかし</button></span><br>
+                <span class="tool-item"><button class="filter" id="sharpness" type="button">シャープネス</button></span>
+                <span class="tool-item"><button class="filter" id="median" type="button">ノイズ除去</button></span>
+                <span class="tool-item"><button class="filter" id="embossing" type="button">エンボス</button></span>
+                <span class="tool-item"><button class="filter" id="mosaic" type="button">モザイク</button></span>
+            </div>
+            <div class="tool-row">
+                <button id="clear" type="button">クリア</button>    
+            </div>
+        </div>
+    </body>
+</html>
