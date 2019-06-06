@@ -40,4 +40,9 @@
     function endDraw() {
         drawing = false;
     }
+
+    // 色の変更
+    document.querySelector('#color').addEventListener('change', e => {
+        ctx.strokeStyle = e.target.value;
+    });
 })();
