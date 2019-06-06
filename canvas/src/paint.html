@@ -18,9 +18,9 @@
             </div>
             <div class="tool-row">
                 描画モード：
-                <label><input class="drawing_mode" id="pencil" type="radio" name="drawing_mode" checked>鉛筆</label>
-                <label><input class="drawing_mode" id="eraser" type="radio" name="drawing_mode">消しゴム</label>
-                <label><input class="drawing_mode" id="char" type="radio" name="drawing_mode">文字</label>
+                <label><input id="pencil" type="radio" name="drawing_mode" checked>鉛筆</label>
+                <label><input id="eraser" type="radio" name="drawing_mode">消しゴム</label>
+                <label><input id="char" type="radio" name="drawing_mode">文字</label>
             </div>
             <div class="tool-row">
                 入力文字列：<span class="tool-item"><input id="string" type="text" disabled /></span>
@@ -35,15 +35,15 @@
             </div>
             <div class="tool-row">
                 フィルタ<br>
-                <span class="tool-item"><button class="filter" id="grayscale">グレースケール</button></span>
-                <span class="tool-item"><button class="filter" id="negative" type="button">ネガポジ補正</button></span>
-                <span class="tool-item"><button class="filter" id="binarization" type="button">二値化</button></span>
-                <span class="tool-item"><button class="filter" id="gamma" type="button">ガンマ補正</button></span>
-                <span class="tool-item"><button class="filter" id="blur" type="button">ぼかし</button></span><br>
-                <span class="tool-item"><button class="filter" id="sharpness" type="button">シャープネス</button></span>
-                <span class="tool-item"><button class="filter" id="median" type="button">ノイズ除去</button></span>
-                <span class="tool-item"><button class="filter" id="embossing" type="button">エンボス</button></span>
-                <span class="tool-item"><button class="filter" id="mosaic" type="button">モザイク</button></span>
+                <button class="filter tool-item" value="toGrayscale">グレースケール</button>
+                <button class="filter tool-item" value="toNegative" type="button">ネガポジ補正</button>
+                <button class="filter tool-item" value="toBinarization" type="button">二値化</button>
+                <button class="filter tool-item" value="toGamma" type="button">ガンマ補正</button>
+                <button class="filter tool-item" value="toBlur" type="button">ぼかし</button><br>
+                <button class="filter tool-item" value="toSharpness" type="button">シャープネス</button>
+                <button class="filter tool-item" value="toMedian" type="button">ノイズ除去</button>
+                <button class="filter tool-item" value="toEmbossing" type="button">エンボス</button>
+                <button class="filter tool-item" value="toMosaic" type="button">モザイク</button>
             </div>
             <div class="tool-row">
                 <button id="clear" type="button">クリア</button>    
