@@ -2,8 +2,19 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" version="1.1" class="menu" width="250px" height="250px" viewBox="0 0 500 500">
     <style><![CDATA[
-        /* ここにCSSを書いていく */
         .border {
+            fill: white;
+            transform-origin: 250px 250px;
+            transition: 200ms all ease;
+        }
+        .close-border1 {
+            transform: translate(-102px, 102px) rotate(45deg);
+        }
+        .close-border2 {
+            opacity: 0;
+        }
+        .close-border3 {
+            transform: translate(-102px, -102px) rotate(-45deg);
         }
     ]]></style>
     <!-- 一番上の線 -->
@@ -17,7 +28,11 @@
             d="M454.5,356.7H44.5c-18.8,0-34.1,15.2-34.1,34.1c0,18.8,15.3,34.1,34.1,34.1h409.9c18.9,0,34.2-15.3,34.2-34.1 S473.3,356.7,454.5,356.7z"/>
     <script><![CDATA[
         (function() {
-            // ここにjavascriptを書いていく
+            document.querySelector('.menu').addEventListener('click', () => {
+                document.querySelector('#border1').classList.toggle('close-border1');
+                document.querySelector('#border2').classList.toggle('close-border2');
+                document.querySelector('#border3').classList.toggle('close-border3');
+            });
         })();
     ]]></script>
 </svg>
