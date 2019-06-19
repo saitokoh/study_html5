@@ -27,12 +27,27 @@
     <path class="border" id="border3"
             d="M454.5,356.7H44.5c-18.8,0-34.1,15.2-34.1,34.1c0,18.8,15.3,34.1,34.1,34.1h409.9c18.9,0,34.2-15.3,34.2-34.1 S473.3,356.7,454.5,356.7z"/>
     <script><![CDATA[
-        (function() {
-            document.querySelector('.menu').addEventListener('click', () => {
-                document.querySelector('#border1').classList.toggle('close-border1');
-                document.querySelector('#border2').classList.toggle('close-border2');
-                document.querySelector('#border3').classList.toggle('close-border3');
-            });
-        })();
+        const border1 = document.querySelector('#border1');
+        const border2 = document.querySelector('#border2');
+        const border3 = document.querySelector('#border3');
+        document.transformFunction = {
+            toCloseButton: function(){
+                border1.classList.add('close-border1');
+                border2.classList.add('close-border2');
+                border3.classList.add('close-border3');
+            },
+            toHamburgerButton: function() {
+                border1.classList.remove('close-border1');
+                border2.classList.remove('close-border2');
+                border3.classList.remove('close-border3');
+            },
+            getIconStatus: function() {
+                if (border1.classList.contains('close-border1')) {
+                    return 'closeButton';
+                } else {
+                    return 'hamburgerButton';
+                }
+            }
+        }
     ]]></script>
 </svg>

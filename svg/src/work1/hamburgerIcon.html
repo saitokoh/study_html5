@@ -11,5 +11,17 @@
     </head>
     <body>
         <object id="hamburgerIcon" type="image/svg+xml" data="lib/hamburgerIcon.svg"></object>
+        <script>
+                window.onload = function() {
+                    const hamburgerIconDocument = document.querySelector('#hamburgerIcon').contentDocument;
+                    hamburgerIconDocument.addEventListener('click', () => {
+                        if (hamburgerIconDocument.transformFunction.getIconStatus() == 'hamburgerButton') {
+                            hamburgerIconDocument.transformFunction.toCloseButton();
+                        } else {
+                            hamburgerIconDocument.transformFunction.toHamburgerButton();
+                        }
+                    });
+                }
+            </script>
     </body>
 </html>
