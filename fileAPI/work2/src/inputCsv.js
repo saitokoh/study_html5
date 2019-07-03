@@ -35,17 +35,13 @@
             return table;    
         },
         table2csv: tableElem => {
-            let csv = "";
-            const trs = tableElem.querySelectorAll('tr');
-            for (const tr of trs) {
-                const inputs = tr.querySelectorAll('input');
-                for (const input of inputs) {
-                    csv += input.value + ',';
-                }
-                // 最後のカンマを取り除いて改行記号にする
-                csv = csv.slice(0, -1) + '\n';
-            }
-            return csv;
+            return Array.from(tableElem.querySelectorAll('tr'))
+                .map(tr => 
+                    // 配列を用意してjoinなら、1行ずつAllocateされる
+                    Array.from(tr.querySelectorAll('input'))
+                        .map(input => input.value
+                ).join(',')
+            ).join("\n")
         }
     }
 
