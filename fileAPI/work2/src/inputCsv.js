@@ -9,12 +9,44 @@
         noFile: "ファイルを選択してください。",
         overFileNum: "ファイルは１つだけ選択してください。",
         wrongFileFormat: "CSVファイルを選択してください。"
-    }
+    };
 
     const createError = errorStr => {
         const errorP = document.createElement('p');
         errorP.textContent = errorStr;
         return errorP;
+    };
+
+    const convertor = {
+        csv2table: csvStr => {
+            const table = document.createElement('table');
+            for (const row of csvStr.split("\n")) {
+                const tr = document.createElement('tr');
+                for (const value of row.split(",")) {
+                    const td = document.createElement('td');
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.value = value;
+                    td.appendChild(input)
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+            }
+            return table;    
+        },
+        table2csv: tableElem => {
+            let csv = "";
+            const trs = tableElem.querySelectorAll('tr');
+            for (const tr of trs) {
+                const inputs = tr.querySelectorAll('input');
+                for (const input of inputs) {
+                    csv += input.value + ',';
+                }
+                // 最後のカンマを取り除いて改行記号にする
+                csv = csv.slice(0, -1) + '\n';
+            }
+            return csv;
+        }
     }
 
     // 読み込みボタンクリックイベント
@@ -46,7 +78,7 @@
         // ファイル読み込み->表示
         const fileReader = new FileReader();
         fileReader.onload = e => {
-            const table = csv2table(e.target.result)
+            const table = convertor.csv2table(e.target.result)
             tableInsertDiv.appendChild(table);
         };
         fileReader.readAsText(file);
@@ -58,46 +90,13 @@
         if (table === null) {
             return;
         }
-        const csv = table2csv(table);
+        const csv = convertor.table2csv(table);
         const a = document.createElement('a');
-        a.href = 'data:text/plain,' + encodeURIComponent(csv);
+        a.href = 'data:text/csv,' + encodeURIComponent(csv);
         a.download = file.name;
         a.style.display = 'none';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
     });
-
-    // csv -> table
-    function csv2table(csvStr) {
-        const table = document.createElement('table');
-        for (let row of csvStr.split("\n")) {
-            const tr = document.createElement('tr');
-            for (let value of row.split(",")) {
-                const td = document.createElement('td');
-                const input = document.createElement('input');
-                input.type = 'text';
-                input.value = value;
-                td.appendChild(input)
-                tr.appendChild(td);
-            }
-            table.appendChild(tr);
-        }
-        return table;
-    }
-
-    // table -> csv
-    function table2csv(table) {
-        let csv = "";
-        const trs = table.querySelectorAll('tr');
-        for (const tr of trs) {
-            const inputs = tr.querySelectorAll('input');
-            for (const input of inputs) {
-                csv += input.value + ',';
-            }
-            // 最後のカンマを取り除いて改行記号にする
-            csv = csv.slice(0, -1) + '\n';
-        }
-        return csv;
-    }
 }())

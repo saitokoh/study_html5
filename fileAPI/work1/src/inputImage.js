@@ -22,7 +22,6 @@
         }
 
         const fileList = e.target.files;
-        imageInsertDiv.removeChild
 
         // ファイル数チェック
         if (fileList.length === 0) {
@@ -31,8 +30,7 @@
         }
 
         // ファイルチェック
-        for(let i = 0 ; i < fileList.length ; i++) {
-            const file = fileList[i];
+        for (const file of fileList) {
             // ファイルサイズチェック
             if (file.size > 500000 ) {
                 imageInsertDiv.appendChild(createError(errorMessage.overFileSize));
@@ -46,7 +44,7 @@
         }
         
         // ファイル読み込み->表示
-        for (let i = 0 ; i < fileList.length ; i++) {
+        for (const file of fileList) {
             const fileReader = new FileReader();
             fileReader.onload = e => {
                 const result = e.target.result;
@@ -54,7 +52,7 @@
                 img.src = result;
                 imageInsertDiv.appendChild(img);
             };
-            fileReader.readAsDataURL(fileList[i]);
+            fileReader.readAsDataURL(file);
         }
         
     });
