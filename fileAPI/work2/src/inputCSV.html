@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>ファイルAPI</title>
+        <script src="inputCsv.js" defer></script>
+        <style>
+            table {
+                border-width: 0px;
+            }
+            table tr td {
+                border: 1px solid #000000;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <input type="file" id="csv_input" accept="text/csv">
+        </div>
+        <div>
+            <button type="button" id="input_button">読み込み</button>
+            <button type="button" id="save_button">保存</button>
+        </div>
+        <div id="table_area"></div> 
+    </body>
+</html>

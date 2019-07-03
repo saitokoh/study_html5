@@ -5,3 +5,5 @@
 ## 項目
 - form （Constraint Validation API）
 - canvas API
+- SVG
+- File API
