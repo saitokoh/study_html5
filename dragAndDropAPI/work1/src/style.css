@@ -35,3 +35,13 @@
     visibility: hidden;
     transition: visibility linear 1ms;
 }
+
+*[draggable=true] {
+  /* ドラッグできることをわかりやすくする */
+  cursor: pointer;
+  /* 選択できないようにする */
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

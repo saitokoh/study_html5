@@ -4,6 +4,12 @@
     document.querySelectorAll(".animal").forEach(animal => {
         // 各img要素にdragstartイベントの関数を設定
         animal.addEventListener("dragstart", e => {
+            const draggable = e.target.getAttribute('draggable');
+            // 明示的にdraggableにしている要素以外はドラッグ禁止
+            if (!draggable || draggable === 'auto') {
+                e.preventDefault();
+                return;
+            }
             e.dataTransfer.setData("id", e.target.id);
             e.target.classList.add("active");
             dropzones.forEach(dropzone => {
