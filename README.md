@@ -7,3 +7,4 @@
 - canvas API
 - SVG
 - File API
+- Drag & Drop API
