@@ -5,6 +5,7 @@
         // 各img要素にdragstartイベントの関数を設定
         animal.addEventListener("dragstart", e => {
             e.dataTransfer.setData("id", e.target.id);
+            e.target.classList.add("active");
             dropzones.forEach(dropzone => {
                 dropzone.classList.add("dragstart");
             });
@@ -12,6 +13,7 @@
 
         // ドラッグが終了したときの処理
         animal.addEventListener("dragend", e => {
+            e.target.classList.remove("active");
             dropzones.forEach(dropzone => {
                 dropzone.classList.remove("dragenter");
                 dropzone.classList.remove("dragstart");

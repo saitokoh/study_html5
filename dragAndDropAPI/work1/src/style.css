@@ -30,3 +30,8 @@
 .animal {
     z-index: 2;
 }
+
+.animal.active {
+    visibility: hidden;
+    transition: visibility linear 1ms;
+}
